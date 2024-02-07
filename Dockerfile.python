@@ -1,0 +1,16 @@
+FROM python:3.9-slim
+
+LABEL AUTHOR=n.uchaev@omp.ru
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN   pip install -r requirements.txt \
+      && python3 -m venv venv
+
+COPY main.py .
+
+EXPOSE 5000
+
+CMD ["python", "main.py"]

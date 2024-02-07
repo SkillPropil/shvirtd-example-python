@@ -1,0 +1,41 @@
+version: "3"
+services:
+  db:
+    image: mysql:8
+    container_name: db
+    restart: always
+    networks:
+      backend:
+        ipv4_address: ${DB_HOST}
+    environment:
+      - MYSQL_ROOT_HOST="%"
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/mysql
+    ports:
+      - "3306"
+
+
+  web:
+    image: cr.yandex/crp2vti56sp972lnd866/web-python:1.0.0
+    container_name: web
+    depends_on: 
+      - db
+    restart: always
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+    volumes:
+      - ./venv:/bin/activate
+    networks:
+      backend:
+        ipv4_address: 172.20.0.5
+    ports:
+    - "5000"
+include:
+  - proxy.yaml
