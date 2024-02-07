@@ -239,5 +239,7 @@ bin/
 bin/terraform
 ```
 ### Задача 6.1
+```
 root@msk1wst405n:/opt# docker run -it -d  --entrypoint=/bin/sh hashicorp/terraform:latest
 docker cp terraform c0fc29db863f:/bin/terraform
+```
