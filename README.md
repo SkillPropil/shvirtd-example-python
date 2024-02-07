@@ -238,3 +238,6 @@ tar -xvf 964bf29117b2de3e4668ea9be8cd353f16d5f06777e7f2fb6d6c7a3eeac5b995/layer.
 bin/
 bin/terraform
 ```
+### Задача 6.1
+root@msk1wst405n:/opt# docker run -it -d  --entrypoint=/bin/sh hashicorp/terraform:latest
+docker cp terraform c0fc29db863f:/bin/terraform
