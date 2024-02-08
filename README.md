@@ -129,10 +129,9 @@ Database changed
 ```
 root@msk1wst405n:/opt# cat netology.sh
 #!/bin/bash
-git clone https://github.com/SkillPropil/shvirtd-example-python /opt/shvirtd-example-python
-cd /opt/shvirtd-example-python
 array=(DB_ROOT_PASSWORD DB_USER DB_PASSWORD DB_NAME DB_HOST)
-rm -f .env
+git clone https://github.com/SkillPropil/shvirtd-example-python /opt/shvirtd-example-python
+cd /opt/shvirtd-example-python && rm -f .env
 for key in ${array[*]}
 do
   keyupd=$(printf "%s\n" $key)
