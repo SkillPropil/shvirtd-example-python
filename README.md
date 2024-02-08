@@ -130,15 +130,17 @@ Database changed
 root@msk1wst405n:/opt# cat netology.sh
 #!/bin/bash
 array=(DB_ROOT_PASSWORD DB_USER DB_PASSWORD DB_NAME DB_HOST)
+
 git clone https://github.com/SkillPropil/shvirtd-example-python /opt/shvirtd-example-python
 cd /opt/shvirtd-example-python && rm -f .env
+
 for key in ${array[*]}
 do
-  keyupd=$(printf "%s\n" $key)
-  echo "Please fill variables $keyupd"
+  echo "Please fill variables $key"
   read value
-  echo "$keyupd=$value" >> .env
+  echo "$key=$value" >> .env
 done
+
 docker compose up -d
 ```
 Запускаем
